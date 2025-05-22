@@ -1,0 +1,76 @@
+
+.advantage-card {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  animation: all 0.5s ease;
+}
+
+.advantage-card:hover .advantage-card-number {
+  background-color: #eba8b1;
+}
+
+.advantage-card:hover span {
+  color: #821328;
+}
+
+.advantage-card-number {
+  background-color: #821328;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  margin-bottom: 13px;
+  position: relative;
+}
+
+.advantage-card-number span {
+  font-size: 60px;
+  font-family: GilroyExtraBold, sans-serif;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  bottom: -15px;
+  left: 19px;
+}
+
+
+.advantage-card-title {
+  margin-bottom: 19px;
+  font-size: 20px;
+  font-family: GilroyExtraBold, sans-serif;
+  color: rgb(51, 25, 7);
+  line-height: 2.25;
+}
+
+.advantage-card-text {
+  font-size: 15px;
+  font-family: Gilroy, sans-serif;
+  color: rgb(51, 25, 7);
+  line-height: 1.333;
+}
+
+
+@media screen and (max-width: 768px) {
+  .advantage-card {
+    align-items: center;
+    text-align: center;
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .advantage-card {
+    margin-top: 0;
+    width: 165px;
+  }
+
+  .advantage-card-title {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .advantage-card-text {
+    font-size: 13px;
+    line-height: 1.385;
+  }
+}

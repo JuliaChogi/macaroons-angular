@@ -25,7 +25,8 @@
              font-family="none" font-weight="none" font-size="none" text-anchor="none"
              style="mix-blend-mode: normal">
             <g transform="scale(5.12,5.12)">
-              <path d="M9.15625,6.3125l-2.84375,2.84375l15.84375,15.84375l-15.9375,15.96875l2.8125,2.8125l15.96875,-15.9375l15.9375,15.9375l2.84375,-2.84375l-15.9375,-15.9375l15.84375,-15.84375l-2.84375,-2.84375l-15.84375,15.84375z"></path>
+              <path
+                d="M9.15625,6.3125l-2.84375,2.84375l15.84375,15.84375l-15.9375,15.96875l2.8125,2.8125l15.96875,-15.9375l15.9375,15.9375l2.84375,-2.84375l-15.9375,-15.9375l15.84375,-15.84375l-2.84375,-2.84375l-15.84375,15.84375z"></path>
             </g>
           </g>
         </svg>
@@ -36,7 +37,7 @@
         <li><a href="#" (click)="scrollTo(orderElement)">Оформить заказ</a></li>
       </ul>
     </div>
-    <div class="phone"><a href="tel:+375(29)368-98-68">{{phone}}</a></div>
+    <div class="phone"><a href="tel:{{phone}}">{{phone | phone}}</a></div>
   </div>
 </header>
 
@@ -50,7 +51,8 @@
         Побалуйте себя и своих близких самыми вкусными и ароматными домашними пироженками Macaroon!
       </div>
       <div class="main_info_actions">
-        <button class="btn main_button" (click)="scrollTo(productsElement)">
+        <button class="btn main_button" (click)="scrollTo(productsElement)" ButtonEffects
+                [defaultButton]="'-webkit-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%'">
           Выбрать макарун
         </button>
       </div>
@@ -78,15 +80,9 @@
       </div>
     </div>
 
-    <div class="advantages-cards" >
-      <div class="advantage-card" *ngFor="let advantage of advantages; let i = index;">
-        <div class="advantage-card-number"><span>{{i + 1}}</span></div>
-        <div class="advantage-card-title">
-          {{advantage.title}}
-        </div>
-        <div class="advantage-card-text">{{advantage.description}}
-        </div>
-      </div>
+    <div class="advantages-cards">
+      <advantage-card *ngFor="let advantage of advantages; let i = index;" [advantage]="advantage"
+                      [index]="i"></advantage-card>
 
     </div>
   </div>
@@ -95,18 +91,7 @@
   <div class="container">
     <div class="shop-title">Выберите свой макарун</div>
     <div class="shop-items">
-      <div class="shop-item" *ngFor="let product of products">
-        <div class="shop-item-image">
-          <img src="assets/images/{{product.img}}" alt="macaroon">
-        </div>
-        <div class="shop-item-title">
-          {{product.title}}
-        </div>
-        <div class="shop-item-actions">
-          <div class="shop-item-price">1 шт. {{product.price}}</div>
-          <button class="btn shop_button" (click)="addToCart(product, orderElement)">Заказать</button>
-        </div>
-      </div>
+      <product *ngFor="let product of products" [product]="product" (addToCartEvent)="addToCart($event)"></product>
     </div>
   </div>
 </div>
@@ -127,13 +112,17 @@
         <div class="order-action-input-title">
           Ваш выбор
         </div>
-        <input type="text" class="order-input" placeholder="Напишите, что хотите заказать..." [(ngModel)]="formValues.productTitle" >
+        <input type="text" class="order-input" placeholder="Напишите, что хотите заказать..."
+               [(ngModel)]="formValues.productTitle">
         <div class="order-action-input-title">
           Заполните данные для заказа
         </div>
-        <input type="text" class="order-input" placeholder="Ваше имя"[(ngModel)]="formValues.userName" >
-        <input type="text" class="order-input" placeholder="+375 (__) ___-__-__" [(ngModel)]="formValues.phone" >
-        <button class="btn order-button" (click)="createOrder()">Оформить заказ</button>
+        <input type="text" class="order-input" placeholder="Ваше имя" [(ngModel)]="formValues.userName">
+        <input type="text" class="order-input" placeholder="+375 (__) ___-__-__" [(ngModel)]="formValues.phone">
+        <button class="btn order-button" (click)="createOrder()" ButtonEffects
+                [defaultButton]="'-webkit-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%'">Оформить
+          заказ
+        </button>
       </div>
     </div>
   </div>
@@ -147,12 +136,14 @@
       <div class="footer-image"><img src="./assets/images/instagram.png" alt="instagram"></div>
       <div class="footer-text">Мы в Instagram</div>
     </a>
-    <div class="phone"><a href="tel:+375(29)368-98-68">{{phone}}</a></div>
+    <div class="phone"><a href="tel:{{phone}}">{{phone | phone}}</a></div>
   </div>
   <div class="present" *ngIf="showPresent">
-    <div class="present-image"><img src="./assets/images/present.png" alt="present"></div>
-    <div class="present-block">Оформите заказ
-      и получите подарок!
+    <div class="cart-count-wrap">
+      <div class="cart-count">{{cartService.count ?? 0}}</div>
+    </div>
+    <div class="present-image"><img src="./assets/images/cart.png" alt="cart"></div>
+    <div class="present-block" *ngIf="cartService.sum">{{cartService.sum | currency: "RUB":'руб.'}}
     </div>
   </div>
 </footer>

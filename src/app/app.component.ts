@@ -1,37 +1,27 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductType} from "./types/product.type";
 import {AdvantageType} from "./types/advantage.type";
+import {ProductService} from "./services/product.service";
+import {CartService} from "./services/cart.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  public products: ProductType[] = [
-    {
-      img: 'card1.png',
-      title: 'Макарун с малиной',
-      price: 1.70
-    },
-    {
-      img: 'card2.png',
-      title: 'Макарун с манго',
-      price: 1.70
-    },
-    {
-      img: 'card3.png',
-      title: 'Пирог с ванилью',
-      price: 1.70
-    },
-    {
-      img: 'card4.png',
-      title: 'Пирог с фисташками',
-      price: 1.70
-    }
-  ];
+export class AppComponent implements OnInit {
 
-  public advantages: AdvantageType[] = [
+
+  protected products: ProductType[] = [];
+
+  constructor(private productService: ProductService, public cartService: CartService) {
+  }
+
+  ngOnInit() {
+    this.products = this.productService.getProducts();
+  }
+
+  advantages: AdvantageType[] = [
     {
       title: 'Лучшие продукты',
       description: 'Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты, ароматизаторы и красители.'
@@ -49,28 +39,26 @@ export class AppComponent {
       description: 'Вкус, качество и безопасность наших пирогов подтверждена декларацией о соответствии, которую мы получили 22.06.2016 г.'
     },
   ];
-
-  public formValues = {
+  protected formValues = {
     productTitle: '',
     userName: '',
     phone: '',
   }
 
-  public isOpen: boolean = false;
-  public showPresent: boolean = true;
-  public phone: string = '+375 (29) 368-98-68';
-  public instagramLink: string = 'https://www.instagram.com';
+  protected isOpen: boolean = false;
+  protected showPresent: boolean = true;
+  protected phone: string = '375293689868';
+  protected instagramLink: string = 'https://www.instagram.com';
 
-  public scrollTo(target: HTMLElement): void {
+  protected scrollTo(target: HTMLElement): void {
     target.scrollIntoView({behavior: "smooth"})
   }
 
-  public addToCart(product: ProductType, target: HTMLElement): void {
-    this.scrollTo(target);
-    this.formValues.productTitle = product.title.toUpperCase();
+  protected addToCart(product: string): void {
+    alert(product + ' добавлен в корзину!')
   }
 
-  public createOrder(): void {
+  createOrder(): void {
     if (!this.formValues.productTitle) {
       alert('Выберите макарун!');
       return
@@ -91,11 +79,11 @@ export class AppComponent {
     }
   }
 
-  public openMenu(): void {
+  openMenu(): void {
     this.isOpen = true;
   }
 
-  public closeMenu(target?: HTMLElement): void {
+  closeMenu(target?: HTMLElement): void {
     this.isOpen = false;
   }
 

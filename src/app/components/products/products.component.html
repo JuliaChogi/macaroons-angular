@@ -1,0 +1,14 @@
+<div class="shop-item">
+  <div class="shop-item-image">
+    <img src="assets/images/{{product.img}}" alt="macaroon">
+  </div>
+  <div class="shop-item-title">
+    {{product.title}}
+  </div>
+  <div class="shop-item-actions">
+    <div class="shop-item-price">1 шт. {{product.price | currency: "RUB"}} </div>
+    <button class="btn shop_button" (click)="addProductToCart()" ButtonEffects
+            [defaultButton]="'-webkit-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%'">Заказать
+    </button>
+  </div>
+</div>

@@ -199,21 +199,6 @@
   max-width: 350px;
 }
 
-.btn {
-  background-image: linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%);
-  border: 0;
-  font-size: 18px;
-  font-family: GilroyBold, sans-serif;
-  color: rgb(255, 255, 255);
-  text-align: center;
-  border-radius: 30px;
-  transition: all .5s ease;
-  cursor: pointer;
-}
-
-.btn:hover {
-  box-shadow: 0 5px 10px 10px rgba(0, 0, 0, 0.2);
-}
 
 .main_button {
   padding: 22px 43px;
@@ -262,55 +247,6 @@
   padding-bottom: 120px;
 }
 
-.advantage-card {
-  display: flex;
-  flex-direction: column;
-  width: 220px;
-  animation: all 0.5s ease;
-}
-
-.advantage-card:hover .advantage-card-number {
-  background-color: #eba8b1;
-}
-
-.advantage-card:hover span {
-  color: #821328;
-}
-
-.advantage-card-number {
-  background-color: #821328;
-  border-radius: 50%;
-  height: 70px;
-  width: 70px;
-  margin-bottom: 13px;
-  position: relative;
-}
-
-.advantage-card-number span {
-  font-size: 60px;
-  font-family: GilroyExtraBold, sans-serif;
-  color: rgb(255, 255, 255);
-  position: absolute;
-  bottom: -15px;
-  left: 19px;
-}
-
-
-.advantage-card-title {
-  margin-bottom: 19px;
-  font-size: 20px;
-  font-family: GilroyExtraBold, sans-serif;
-  color: rgb(51, 25, 7);
-  line-height: 2.25;
-}
-
-.advantage-card-text {
-  font-size: 15px;
-  font-family: Gilroy, sans-serif;
-  color: rgb(51, 25, 7);
-  line-height: 1.333;
-}
-
 .shop {
   background-color: #eba8b1;
 }
@@ -330,58 +266,6 @@
   grid-template-rows: 1fr;
   grid-column-gap: 30px;
   padding-bottom: 120px;
-}
-
-.shop-item {
-  position: relative;
-  border-width: 2px;
-  border-color: rgb(255, 255, 255);
-  border-style: solid;
-  border-radius: 20px;
-  width: 259px;
-  height: 225px;
-  text-align: center;
-}
-
-.shop-item-image {
-  position: absolute;
-  top: -61px;
-  left: 35px;
-  cursor: pointer;
-  animation: all 2s linear;
-}
-
-.shop-item:hover .shop-item-image {
-  transform: scale(1.1);
-  transition: .5s;
-}
-
-.shop-item-title {
-  padding-top: 109px;
-  padding-bottom: 26px;
-  font-size: 18px;
-  font-family: Tavolga, sans-serif;
-  color: rgb(255, 255, 255);
-}
-
-.shop-item-actions {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 21px 27px 21px;
-}
-
-.shop_button {
-  padding: 20px 30px;
-  box-sizing: border-box;
-}
-
-.shop-item-price {
-  font-size: 15px;
-  font-family: GilroyRegular, sans-serif;
-  color: rgb(255, 255, 255);
-  width: 55px;
-  text-align: left;
-  align-self: center;
 }
 
 .order {
@@ -574,12 +458,6 @@
     margin: 0 auto;
   }
 
-  .advantage-card {
-    align-items: center;
-    text-align: center;
-    margin-top: 80px;
-  }
-
   .shop-title {
     padding-bottom: 143px;
   }
@@ -674,11 +552,6 @@
     grid-row-gap: 142px;
   }
 
-  .shop-item {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .strawberry2 {
     bottom: 300px;
   }
@@ -709,22 +582,6 @@
     justify-content: space-around;
     gap: 15px;
     padding-bottom: 100px;
-  }
-
-  .advantage-card {
-    margin-top: 0;
-    width: 165px;
-  }
-
-  .advantage-card-title {
-    font-size: 18px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .advantage-card-text {
-    font-size: 13px;
-    line-height: 1.385;
   }
 
   .strawberry1 {
@@ -895,6 +752,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
 }
 
 .present-block {
@@ -907,8 +766,6 @@
   border-style: solid;
   border-radius: 10px;
   background-color: rgb(254, 239, 238);
-  width: 168px;
-  height: 60px;
   position: absolute;
   box-sizing: border-box;
   padding: 13px;
@@ -917,6 +774,18 @@
   transform: translateY(100%);
   opacity: 0;
   transition: .7s;
+}
+
+.cart-count-wrap {
+  height: 25px;
+  width: 25px;
+  border: 2px solid rgb(119, 10, 29);
+  border-radius: 50%;
+  background-color: rgb(254, 239, 238);
+  text-align: center;
+  color: rgb(119, 10, 29);
+  position: absolute;
+  right: 0;
 }
 
 .present:hover .present-block {
@@ -929,7 +798,7 @@
   content: '';
   position: absolute;
   right: -20px;
-  bottom: 17px;
+  bottom: 13px;
   border: 10px solid transparent;
   border-left: 10px solid rgb(119, 10, 29);
 }
@@ -938,7 +807,7 @@
   content: '';
   position: absolute;
   right: -18px;
-  bottom: 17px;
+  bottom: 13px;
   border: 10px solid transparent;
   border-left: 10px solid rgb(254, 239, 238);
 }
